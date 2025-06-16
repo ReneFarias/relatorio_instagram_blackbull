@@ -1605,6 +1605,69 @@ cultureInfo pt-BR
 			          }
 			        }
 			      ]
+			    },
+			    "criptomoedas.preco_atual": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Criptomoedas",
+			          "ConceptualProperty": "Preco Atual"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Preço": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "criptomoedas.variacao_percentual_24h": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Criptomoedas",
+			          "ConceptualProperty": "Variacao Percentual 24h"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Variação 24h": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "criptomoedas.capitalizacao_mercado": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Criptomoedas",
+			          "ConceptualProperty": "Capitalizacao Mercado"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Capitalização Mercado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
