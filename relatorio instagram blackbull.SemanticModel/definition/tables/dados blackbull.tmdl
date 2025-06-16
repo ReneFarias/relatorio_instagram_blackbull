@@ -1,0 +1,122 @@
+table 'dados blackbull'
+	lineageTag: 731a2be7-a802-46ba-b1ea-65b3d6a99ff8
+
+	column followers_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 814a63e1-1ff7-4578-8822-476598dfe2e6
+		summarizeBy: sum
+		sourceColumn: followers_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column biography
+		dataType: string
+		lineageTag: 398afcb1-1310-4d0d-8ef0-3ab45ada38de
+		summarizeBy: none
+		sourceColumn: biography
+
+		annotation SummarizationSetBy = Automatic
+
+	column follows_count
+		dataType: int64
+		formatString: 0
+		lineageTag: f963b972-d41c-4fd6-9e37-127e8d0ea2c3
+		summarizeBy: sum
+		sourceColumn: follows_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 90b6494b-bb13-4182-91ce-015c5085998e
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7e9cd70e-4ecc-48f8-a93a-870a66383490
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		dataType: string
+		lineageTag: 26e68c2a-8155-4b08-8c9d-e5b4fc1beb89
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = Automatic
+
+	column legacy_instagram_user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d674047-88dc-48d2-98f9-dd3c84586427
+		summarizeBy: sum
+		sourceColumn: legacy_instagram_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column media_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f0012c6-165d-487a-aadd-4bc08f672721
+		summarizeBy: sum
+		sourceColumn: media_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column profile_picture_url
+		dataType: string
+		lineageTag: a5bbc53e-8d76-4538-92b0-6c29e8385f8b
+		summarizeBy: none
+		sourceColumn: profile_picture_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column ig_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ad29abef-a99e-42e8-80e7-1248901d6b53
+		summarizeBy: sum
+		sourceColumn: ig_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_published
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c2593173-a867-4aa6-83cf-f3be2df57279
+		summarizeBy: none
+		sourceColumn: is_published
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_profile_pic
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3291765f-6b2d-4ebd-9e15-dfbe9f78e945
+		summarizeBy: none
+		sourceColumn: has_profile_pic
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dados blackbull' = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://graph.facebook.com/v23.0/17841468029321032?fields=followers_count%2Cbiography%2Cfollows_count%2Cid%2Cname%2Cusername%2Cwebsite%2Clegacy_instagram_user_id%2Cmedia_count%2Cprofile_picture_url%2Cdataset%2Clive_media%2Crecently_searched_hashtags%2Ctags%2Cstories%2Cwelcome_message_flows%2Cig_id%2Cis_published%2Chas_profile_pic%2Cbranded_content_ad_permissions&access_token=EAAKh1Nok4vQBO4z8RvOr8ZBbNsZAWUagQ9ZASxjxG7XHceZCs7z1bdyGnphFM1oA9zsM1ZAV113xIkMtoxvi46LVZATAcCes4ZBkDYZCsoVWFzzaRoIgiifuiKG6RFPZCgxF2Mh4ll9PHOZBihdDdWKAsf59pGjenlVCLy4to2YKvZCrZAlfhDNyBqZBTsBlkxoV5
+				")),
+				    #"Convertido para Tabela" = Table.FromRecords({Fonte}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Convertido para Tabela",{{"followers_count", Int64.Type}, {"biography", type text}, {"follows_count", Int64.Type}, {"id", Int64.Type}, {"name", type text}, {"username", type text}, {"legacy_instagram_user_id", Int64.Type}, {"media_count", Int64.Type}, {"profile_picture_url", type text}, {"ig_id", Int64.Type}, {"is_published", type logical}, {"has_profile_pic", type logical}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

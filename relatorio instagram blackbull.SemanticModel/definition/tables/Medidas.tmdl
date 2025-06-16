@@ -1,0 +1,28 @@
+table Medidas
+	lineageTag: 8538e6d6-81a3-4521-90a5-4828ee24f879
+
+	measure 'Seguidores %' = DIVIDE([Seguidores],CALCULATE([Seguidores],ALL(seguidores)))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a6a77dcb-330c-47a8-9b48-ea7b8ecb348f
+
+	measure Seguidores = SUM(seguidores[data.total_value.breakdowns.results.value])
+		formatString: 0
+		lineageTag: 4c67e497-61b0-49e4-a735-25baec2c3ad7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 9a30fa7e-1713-400f-a0c5-a2c77e8751dc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 0a6e5f02c2eb48f7b600809d52a4f518
+

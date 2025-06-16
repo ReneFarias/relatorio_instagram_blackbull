@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "relatorio instagram blackbull"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f30ee7f0-9415-462e-b09f-1f73aa4b253d"
+  }
+}
