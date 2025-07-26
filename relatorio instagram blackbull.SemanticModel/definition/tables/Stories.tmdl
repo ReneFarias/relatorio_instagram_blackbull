@@ -1,0 +1,92 @@
+table Stories
+	lineageTag: f8f06d79-743e-423e-ba46-759468907b18
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d54a314-f7c4-4d56-8ec9-7efbd8c59225
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descricao
+		dataType: string
+		lineageTag: b6a6793b-8d64-4293-84fa-7b3ee8cc7eda
+		summarizeBy: none
+		sourceColumn: Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Midia
+		dataType: string
+		lineageTag: bf383de3-53ba-4e6f-a5b5-d6dbeaa709a2
+		summarizeBy: none
+		sourceColumn: Midia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'URL Midia'
+		dataType: string
+		lineageTag: 89ff4063-798b-4d05-9b2d-edf099b2d43f
+		summarizeBy: none
+		sourceColumn: URL Midia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Permanente'
+		dataType: string
+		lineageTag: bc549782-789c-4bc3-8723-0c5b71632112
+		summarizeBy: none
+		sourceColumn: Link Permanente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Lanc'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 06c7d67f-6e4a-40d5-bc0e-4101bc8282ac
+		summarizeBy: none
+		sourceColumn: Data Lanc
+
+		variation Variation
+			isDefault
+			relationship: fdd33b78-8d31-41e9-a8c2-cf08ceabdd66
+			defaultHierarchy: LocalDateTable_319a3a9e-3efc-4c7e-9348-72b9a7c8aa7e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: d7693415-e0e6-43be-a3c6-614af72738c3
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: ea77d322-080f-4f05-9e0b-f55c34d19187
+			defaultHierarchy: LocalDateTable_a55f68af-14b8-4a9b-9304-a9b9e2c01a0a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition Stories = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Stories.xlsx"), null, true),
+				    Stories_Sheet = Fonte{[Item="Stories",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Stories_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id", Int64.Type}, {"caption", type any}, {"media_type", type text}, {"media_url", type text}, {"permalink", type text}, {"timestamp", type datetime}, {"Data", type datetime}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"id", "ID"}, {"caption", "Descricao"}, {"media_type", "Midia"}, {"media_url", "URL Midia"}, {"permalink", "Link Permanente"}, {"timestamp", "Data Lanc"}, {"Data", "Data Req"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

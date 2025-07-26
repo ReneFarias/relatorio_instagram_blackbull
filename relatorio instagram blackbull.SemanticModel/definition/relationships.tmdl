@@ -1,0 +1,110 @@
+relationship 1ce0f0c6-d2e9-4d53-bca4-869746da1cd8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DiaSeguidores.'Data Lanc'
+	toColumn: LocalDateTable_af1c639a-6f76-4fe1-9a42-33c2e153f50b.Date
+
+relationship ebcda245-6af8-40aa-a35a-687541dec177
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Metricas.'Data Req'
+	toColumn: LocalDateTable_025df67a-c200-4f98-bda5-2df04c66c00e.Date
+
+relationship 5f6d28fd-2183-4b0d-a216-257c30968d88
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Publicacoes.'Data Lanc'
+	toColumn: LocalDateTable_af8fd7c9-92d8-4790-ac9d-61a6687a0887.Date
+
+relationship 3f779208-2753-4e2e-919c-bc0a5cb3602d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Publicacoes.'Data Req'
+	toColumn: LocalDateTable_ae6653bc-16b8-4dbf-a3ec-3168e0332213.Date
+
+relationship fdd33b78-8d31-41e9-a8c2-cf08ceabdd66
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stories.'Data Lanc'
+	toColumn: LocalDateTable_319a3a9e-3efc-4c7e-9348-72b9a7c8aa7e.Date
+
+relationship ea77d322-080f-4f05-9e0b-f55c34d19187
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stories.'Data Req'
+	toColumn: LocalDateTable_a55f68af-14b8-4a9b-9304-a9b9e2c01a0a.Date
+
+relationship 4821dede-99fa-4fe8-abeb-a8afc845d01c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: MetricasStories.'Data Req'
+	toColumn: LocalDateTable_5cd87224-a636-4fa0-bb04-59c1a3c5dd50.Date
+
+relationship 5b9e8f8f-2e3b-b0ca-a3de-d183272eaf2c
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: APIpublicacoes.id
+	toColumn: Publicacoes.ID
+
+relationship 8151352f-9f44-d2f1-f6b5-6e043ee01be0
+	fromColumn: Metricas.ID
+	toColumn: Publicacoes.ID
+
+relationship 6b9729de-625a-7d2a-4658-4fce3096c8ae
+	fromColumn: MetricasStories.ID
+	toColumn: Stories.ID
+
+relationship 0c82abc9-bb3e-4e73-b95c-bce7412fb223
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Alcance.'Data Req'
+	toColumn: LocalDateTable_a76f567e-3b87-4883-a0be-945a87290ac6.Date
+
+relationship 4396400c-0b9e-42a6-8b8d-d4550b7a3def
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DiaSeguidores.'Data Req'
+	toColumn: LocalDateTable_04efef65-fac6-4596-95d2-a2b0479760f6.Date
+
+relationship bfd4441b-bacf-f7de-62cf-7e9868c03b6e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Alcance.'Data Lanc'
+	toColumn: DiaSeguidores.'Data Lanc'
+
+relationship bf2a1699-76fe-448e-9296-c45dbf1ebc2c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VisitasPerfil.'Data Req'
+	toColumn: LocalDateTable_9680a0b3-9ec3-418d-934a-82c44e1ece20.Date
+
+relationship dfa75f86-1e32-4b62-b072-4abe067c4d72
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DadosBasicosInsta.'Data Req'
+	toColumn: LocalDateTable_320b6c21-a3d6-4888-85c6-289f17f737e8.Date
+
+relationship 9458ff93-3f8d-84f9-ef91-7f0253c7beca
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dCalendario.Data
+	toColumn: DadosBasicosInsta.'Data Req'
+
+relationship 9d3454d0-42c6-4ab7-9705-791fcda0de49
+	joinOnDateBehavior: datePartOnly
+	fromColumn: LinkPerfil.'Data Req'
+	toColumn: LocalDateTable_08125041-240c-40a8-9616-f97a2e483f96.Date
+
+relationship c27a7cf0-5749-bd39-1118-270c64c88808
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dCalendario.Data
+	toColumn: LinkPerfil.'Data Req'
+
+relationship 6b6201f9-4ad1-919b-d06a-4c8cc4733d9e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dCalendario.Data
+	toColumn: VisitasPerfil.'Data Req'
+
+relationship 6d63f9c1-655d-bf8a-ff03-81cf033ba405
+	fromColumn: Genero.'Data Req'
+	toColumn: dCalendario.Data
+
+relationship af70d9e7-2700-1792-cc08-691f40299c63
+	fromColumn: SeguidoresCidades.'Data Req'
+	toColumn: dCalendario.Data
+
+relationship 37f8a0ef-0c4d-8f0c-d433-e00c8f316698
+	fromColumn: Faixetaria.'Data Req'
+	toColumn: dCalendario.Data
+

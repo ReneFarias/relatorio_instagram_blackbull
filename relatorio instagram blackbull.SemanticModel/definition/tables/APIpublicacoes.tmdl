@@ -1,0 +1,52 @@
+table APIpublicacoes
+	lineageTag: 20655cb1-3e01-4d75-90b8-1bab433f5a23
+
+	column paging
+		dataType: string
+		lineageTag: d4c1585e-0ae2-41ed-af07-88dd42015fb7
+		summarizeBy: none
+		sourceColumn: paging
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 75f9e417-16c9-4f74-bfea-73a21535287b
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column media_url
+		dataType: string
+		lineageTag: 52be42b1-636d-4878-bcb5-35f74368873e
+		summarizeBy: none
+		sourceColumn: media_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column permalink
+		dataType: string
+		lineageTag: eb895894-60ec-498d-a796-cfbcb7922046
+		summarizeBy: none
+		sourceColumn: permalink
+
+		annotation SummarizationSetBy = Automatic
+
+	partition APIpublicacoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://graph.facebook.com/v23.0/17841468029321032/media?fields=id,media_url,thumbnail_url,permalink&access_token=EAAKh1Nok4vQBO4z8RvOr8ZBbNsZAWUagQ9ZASxjxG7XHceZCs7z1bdyGnphFM1oA9zsM1ZAV113xIkMtoxvi46LVZATAcCes4ZBkDYZCsoVWFzzaRoIgiifuiKG6RFPZCgxF2Mh4ll9PHOZBihdDdWKAsf59pGjenlVCLy4to2YKvZCrZAlfhDNyBqZBTsBlkxoV5")),
+				    #"Convertido para Tabela" = Table.FromRecords({Fonte}),
+				    #"data Expandido" = Table.ExpandListColumn(#"Convertido para Tabela", "data"),
+				    #"data Expandido1" = Table.ExpandRecordColumn(#"data Expandido", "data", {"id", "media_url", "permalink"}, {"id", "media_url", "permalink"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"data Expandido1",{{"id", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

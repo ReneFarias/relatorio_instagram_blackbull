@@ -1,0 +1,92 @@
+table Publicacoes
+	lineageTag: 90dee9b8-407b-4790-a3a8-d32452114732
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c28b5ea8-439d-43a0-9045-6d30943361bb
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descricao
+		dataType: string
+		lineageTag: cda3b3aa-ece4-4cb9-97c5-68f069392c16
+		summarizeBy: none
+		sourceColumn: Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Midia
+		dataType: string
+		lineageTag: d6362ec7-fb8f-47e1-8e9a-d162fcf94c8b
+		summarizeBy: none
+		sourceColumn: Midia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'URL Midia'
+		dataType: string
+		lineageTag: 9be672ae-c10d-4a4a-b897-eec8ac2a748d
+		summarizeBy: none
+		sourceColumn: URL Midia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Permanente'
+		dataType: string
+		lineageTag: c1ebfa0f-4236-4ebe-ba49-ca8f744a22b0
+		summarizeBy: none
+		sourceColumn: Link Permanente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Lanc'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 4f59c8cf-3c06-4e12-85e0-72e30615e017
+		summarizeBy: none
+		sourceColumn: Data Lanc
+
+		variation Variation
+			isDefault
+			relationship: 5f6d28fd-2183-4b0d-a216-257c30968d88
+			defaultHierarchy: LocalDateTable_af8fd7c9-92d8-4790-ac9d-61a6687a0887.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: da3a7787-0130-4d59-b33d-f44cf2c031d3
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: 3f779208-2753-4e2e-919c-bc0a5cb3602d
+			defaultHierarchy: LocalDateTable_ae6653bc-16b8-4dbf-a3ec-3168e0332213.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition Publicacoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Publicacoes.xlsx"), null, true),
+				    Publicacoes_Sheet = Fonte{[Item="Publicacoes",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Publicacoes_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id", Int64.Type}, {"caption", type text}, {"media_type", type text}, {"media_url", type text}, {"permalink", type text}, {"timestamp", type datetime}, {"Data", type datetime}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"id", "ID"}, {"caption", "Descricao"}, {"media_type", "Midia"}, {"media_url", "URL Midia"}, {"permalink", "Link Permanente"}, {"timestamp", "Data Lanc"}, {"Data", "Data Req"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -4,51 +4,247 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 39,
-        "y": 0
+        "x": 1447.457627118644,
+        "y": 61.016949152542374
       },
       "nodes": [
         {
           "location": {
-            "x": 0,
+            "x": 2158.7788858353179,
+            "y": 369.77050654436488
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "35194cbf-3ff6-4d01-a36c-543ae97023f3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 1447.8898679213071,
+            "y": 249.01960784313724
+          },
+          "nodeIndex": "mMedidas",
+          "nodeLineageTag": "8538e6d6-81a3-4521-90a5-4828ee24f879",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1448.0611104450866,
+            "y": 460.78431372549022
+          },
+          "nodeIndex": "mTitulos",
+          "nodeLineageTag": "3579dacb-34c9-47a7-9760-6d8aa247d0cc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1447.4890764767401,
+            "y": 45.141870490128987
+          },
+          "nodeIndex": "Parâmetro",
+          "nodeLineageTag": "36d2dc03-5765-476e-9914-b6fd1f5f7b1f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 1780.8275108494965,
             "y": 0
           },
-          "nodeIndex": "dados blackbull",
+          "nodeIndex": "Alcance",
+          "nodeLineageTag": "37edd526-1f16-417d-80de-2fb28578de91",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1755.6389738962537,
+            "y": 411.602827042117
+          },
+          "nodeIndex": "DadosBasicosInsta",
+          "nodeLineageTag": "5afb3317-af94-4cc6-9295-6ed51ef1d24c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1813.3312815885611,
+            "y": 201.05380743427381
+          },
+          "nodeIndex": "DiaSeguidores",
+          "nodeLineageTag": "93a20769-e993-42b2-9849-e4b30057923d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 2490.21665112099,
+            "y": 246.11613876319757
+          },
+          "nodeIndex": "Faixetaria",
+          "nodeLineageTag": "3bfcfe38-626c-4b7b-8f9e-7c3b9f4f8e94",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2063.8278687501543,
+            "y": 60.906940343239171
+          },
+          "nodeIndex": "Genero",
+          "nodeLineageTag": "0d1e5379-eeef-40e2-a9e0-2f74107c9333",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2034.0703464452733,
+            "y": 647.36753292446986
+          },
+          "nodeIndex": "LinkPerfil",
+          "nodeLineageTag": "ca67b769-7cae-4b45-970d-82e55d022c22",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2353.6027748012307,
+            "y": 79.07039868615918
+          },
+          "nodeIndex": "SeguidoresCidades",
+          "nodeLineageTag": "ec34240a-0715-4902-ac4a-e6f25421e78b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2733.655565148139,
+            "y": 768.154863241212
+          },
+          "nodeIndex": "Metricas",
+          "nodeLineageTag": "c3e8e012-79ab-4a79-8eac-2fc3f6fa9590",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2161.52132683743,
+            "y": 808.9361603754503
+          },
+          "nodeIndex": "Stories",
+          "nodeLineageTag": "f8f06d79-743e-423e-ba46-759468907b18",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2420.0311307589991,
+            "y": 811.36753292447
+          },
+          "nodeIndex": "MetricasStories",
+          "nodeLineageTag": "b5af239c-ae15-4c09-bbb3-7bce382cb790",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2366.2777243116739,
+            "y": 639.2585266100798
+          },
+          "nodeIndex": "VisitasPerfil",
+          "nodeLineageTag": "e721cb1e-6688-430e-a533-f5b7c4c80551",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 1753.8646452120092,
+            "y": 594.81296715270321
+          },
+          "nodeIndex": "dadosPerfil",
           "nodeLineageTag": "731a2be7-a802-46ba-b1ea-65b3d6a99ff8",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 9
         },
         {
           "location": {
-            "x": 284,
-            "y": 14
+            "x": 2742.7038926920582,
+            "y": 197.0211161387632
           },
-          "nodeIndex": "seguidores",
-          "nodeLineageTag": "06200fc6-2846-427e-bf94-e3156a6dbbd3",
-          "size": {
-            "height": 272,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 568,
-            "y": 50
-          },
-          "nodeIndex": "Medidas",
+          "nodeIndex": "APIpublicacoes",
+          "nodeLineageTag": "20655cb1-3e01-4d75-90b8-1bab433f5a23",
           "size": {
             "height": 200,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2712.187993504097,
+            "y": 455.99498390486212
+          },
+          "nodeIndex": "Publicacoes",
+          "nodeLineageTag": "90dee9b8-407b-4790-a3a8-d32452114732",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 14
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 100,
+      "zoomValue": 59,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

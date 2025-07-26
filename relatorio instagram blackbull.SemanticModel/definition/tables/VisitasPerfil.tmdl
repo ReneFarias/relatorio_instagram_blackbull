@@ -1,0 +1,48 @@
+table VisitasPerfil
+	lineageTag: e721cb1e-6688-430e-a533-f5b7c4c80551
+
+	column Valor
+		dataType: int64
+		formatString: 0
+		lineageTag: 06d905c8-0785-4efd-aff6-965eb163c151
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: d006bcc8-4aa3-47bc-83bc-89a4950c9265
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: bf2a1699-76fe-448e-9296-c45dbf1ebc2c
+			defaultHierarchy: LocalDateTable_9680a0b3-9ec3-418d-934a-82c44e1ece20.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VisitasPerfil = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\VisitasPerfil.xlsx"), null, true),
+				    Sheet1_Sheet = Fonte{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"value", Int64.Type}, {"Data", type number}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"value", "Valor"}, {"Data", "Data Req"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data Req", type datetime}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado1",{{"Data Req", type date}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

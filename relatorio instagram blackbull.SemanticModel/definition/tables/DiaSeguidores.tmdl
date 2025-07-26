@@ -1,0 +1,65 @@
+table DiaSeguidores
+	lineageTag: 93a20769-e993-42b2-9849-e4b30057923d
+
+	column Valor
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9fc68ad7-9806-4bd3-9572-61984c82185b
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Lanc'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 6d8be0c8-544c-485b-b4b0-a5c0568aa14b
+		summarizeBy: none
+		sourceColumn: Data Lanc
+
+		variation Variation
+			isDefault
+			relationship: 1ce0f0c6-d2e9-4d53-bca4-869746da1cd8
+			defaultHierarchy: LocalDateTable_af1c639a-6f76-4fe1-9a42-33c2e153f50b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 0cfc4f61-53bb-4aeb-b28c-ac050494e82d
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: 4396400c-0b9e-42a6-8b8d-d4550b7a3def
+			defaultHierarchy: LocalDateTable_04efef65-fac6-4596-95d2-a2b0479760f6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DiaSeguidores = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\DiaSeguidores.xlsx"), null, true),
+				    Sheet1_Sheet = Fonte{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"value", Int64.Type}, {"end_time", type datetime}, {"Data", type datetime}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"value", "Valor"}, {"end_time", "Data Lanc"}, {"Data", "Data Req"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data Lanc", type date}, {"Data Req", type date}})
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

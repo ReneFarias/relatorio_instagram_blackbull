@@ -1,14 +1,16 @@
-table 'dados blackbull'
+table dadosPerfil
 	lineageTag: 731a2be7-a802-46ba-b1ea-65b3d6a99ff8
 
 	column followers_count
 		dataType: int64
-		formatString: 0
+		formatString: #,0
 		lineageTag: 814a63e1-1ff7-4578-8822-476598dfe2e6
 		summarizeBy: sum
 		sourceColumn: followers_count
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	column biography
 		dataType: string
@@ -20,7 +22,7 @@ table 'dados blackbull'
 
 	column follows_count
 		dataType: int64
-		formatString: 0
+		formatString: #,0
 		lineageTag: f963b972-d41c-4fd6-9e37-127e8d0ea2c3
 		summarizeBy: sum
 		sourceColumn: follows_count
@@ -63,7 +65,7 @@ table 'dados blackbull'
 
 	column media_count
 		dataType: int64
-		formatString: 0
+		formatString: #,0
 		lineageTag: 6f0012c6-165d-487a-aadd-4bc08f672721
 		summarizeBy: sum
 		sourceColumn: media_count
@@ -105,12 +107,27 @@ table 'dados blackbull'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'dados blackbull' = m
+	column website
+		dataType: string
+		lineageTag: 5348a68b-8394-448a-b905-af553d09ded2
+		summarizeBy: none
+		sourceColumn: website
+
+		annotation SummarizationSetBy = Automatic
+
+	column stories
+		dataType: string
+		lineageTag: 53a66cd3-46a0-46cb-8d4e-769963cac9a1
+		summarizeBy: none
+		sourceColumn: stories
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dadosPerfil = m
 		mode: import
 		source =
 				let
-				    Fonte = Json.Document(Web.Contents("https://graph.facebook.com/v23.0/17841468029321032?fields=followers_count%2Cbiography%2Cfollows_count%2Cid%2Cname%2Cusername%2Cwebsite%2Clegacy_instagram_user_id%2Cmedia_count%2Cprofile_picture_url%2Cdataset%2Clive_media%2Crecently_searched_hashtags%2Ctags%2Cstories%2Cwelcome_message_flows%2Cig_id%2Cis_published%2Chas_profile_pic%2Cbranded_content_ad_permissions&access_token=EAAKh1Nok4vQBO4z8RvOr8ZBbNsZAWUagQ9ZASxjxG7XHceZCs7z1bdyGnphFM1oA9zsM1ZAV113xIkMtoxvi46LVZATAcCes4ZBkDYZCsoVWFzzaRoIgiifuiKG6RFPZCgxF2Mh4ll9PHOZBihdDdWKAsf59pGjenlVCLy4to2YKvZCrZAlfhDNyBqZBTsBlkxoV5
-				")),
+				    Fonte = Json.Document(Web.Contents("https://graph.facebook.com/v23.0/17841468029321032?fields=followers_count%2Cbiography%2Cfollows_count%2Cid%2Cname%2Cusername%2Cwebsite%2Clegacy_instagram_user_id%2Cmedia_count%2Cprofile_picture_url%2Cdataset%2Clive_media%2Crecently_searched_hashtags%2Ctags%2Cstories%2Cwelcome_message_flows%2Cig_id%2Cis_published%2Chas_profile_pic%2Cbranded_content_ad_permissions&access_token=EAAKh1Nok4vQBO4z8RvOr8ZBbNsZAWUagQ9ZASxjxG7XHceZCs7z1bdyGnphFM1oA9zsM1ZAV113xIkMtoxvi46LVZATAcCes4ZBkDYZCsoVWFzzaRoIgiifuiKG6RFPZCgxF2Mh4ll9PHOZBihdDdWKAsf59pGjenlVCLy4to2YKvZCrZAlfhDNyBqZBTsBlkxoV5")),
 				    #"Convertido para Tabela" = Table.FromRecords({Fonte}),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Convertido para Tabela",{{"followers_count", Int64.Type}, {"biography", type text}, {"follows_count", Int64.Type}, {"id", Int64.Type}, {"name", type text}, {"username", type text}, {"legacy_instagram_user_id", Int64.Type}, {"media_count", Int64.Type}, {"profile_picture_url", type text}, {"ig_id", Int64.Type}, {"is_published", type logical}, {"has_profile_pic", type logical}})
 				in

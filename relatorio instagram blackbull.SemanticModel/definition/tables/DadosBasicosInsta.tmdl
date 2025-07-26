@@ -1,0 +1,66 @@
+table DadosBasicosInsta
+	lineageTag: 5afb3317-af94-4cc6-9295-6ed51ef1d24c
+
+	column Seguidores
+		dataType: int64
+		formatString: #,0
+		lineageTag: 5a3cf1ee-54e9-4716-b904-a9071702be4a
+		summarizeBy: sum
+		sourceColumn: Seguidores
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seguindo
+		dataType: int64
+		formatString: #,0
+		lineageTag: ff11c799-e136-4469-8e97-5920c193386f
+		summarizeBy: sum
+		sourceColumn: Seguindo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Midia
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7b07e9be-ed75-46f1-a9eb-ded2559a642f
+		summarizeBy: sum
+		sourceColumn: Midia
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 84847153-f04d-4a72-9e37-f4e2b3e3441c
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: dfa75f86-1e32-4b62-b072-4abe067c4d72
+			defaultHierarchy: LocalDateTable_320b6c21-a3d6-4888-85c6-289f17f737e8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DadosBasicosInsta = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\DadosBasicosInsta.xlsx"), null, true),
+				    Sheet1_Sheet = Fonte{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"followers_count", Int64.Type}, {"follows_count", Int64.Type}, {"media_count", Int64.Type}, {"Data", type number}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"followers_count", "Seguidores"}, {"follows_count", "Seguindo"}, {"media_count", "Midia"}, {"Data", "Data Req"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data Req", type datetime}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado1",{{"Data Req", type date}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

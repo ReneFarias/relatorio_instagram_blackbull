@@ -6,17 +6,45 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["dados blackbull","seguidores"]
+annotation PBI_QueryOrder = ["dadosPerfil","APIpublicacoes","Alcance","DadosBasicosInsta","DiaSeguidores","Faixetaria","Genero","LinkPerfil","Metricas","Publicacoes","SeguidoresCidades","MetricasStories","Stories","VisitasPerfil"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.143.878.0 (25.05)+b20aa3b866ec1b70879135a4e60e4b1301c75b21
+annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table 'dados blackbull'
-ref table seguidores
-ref table Medidas
+ref table dadosPerfil
+ref table mMedidas
+ref table DateTableTemplate_71d6b477-392c-4ed2-82a5-47a8cc3eb2cd
+ref table dCalendario
+ref table mTitulos
+ref table Parâmetro
+ref table APIpublicacoes
+ref table Alcance
+ref table DadosBasicosInsta
+ref table DiaSeguidores
+ref table LocalDateTable_af1c639a-6f76-4fe1-9a42-33c2e153f50b
+ref table Faixetaria
+ref table Genero
+ref table LinkPerfil
+ref table Metricas
+ref table LocalDateTable_025df67a-c200-4f98-bda5-2df04c66c00e
+ref table Publicacoes
+ref table LocalDateTable_af8fd7c9-92d8-4790-ac9d-61a6687a0887
+ref table LocalDateTable_ae6653bc-16b8-4dbf-a3ec-3168e0332213
+ref table SeguidoresCidades
+ref table Stories
+ref table LocalDateTable_319a3a9e-3efc-4c7e-9348-72b9a7c8aa7e
+ref table LocalDateTable_a55f68af-14b8-4a9b-9304-a9b9e2c01a0a
+ref table MetricasStories
+ref table LocalDateTable_5cd87224-a636-4fa0-bb04-59c1a3c5dd50
+ref table VisitasPerfil
+ref table LocalDateTable_a76f567e-3b87-4883-a0be-945a87290ac6
+ref table LocalDateTable_04efef65-fac6-4596-95d2-a2b0479760f6
+ref table LocalDateTable_9680a0b3-9ec3-418d-934a-82c44e1ece20
+ref table LocalDateTable_320b6c21-a3d6-4888-85c6-289f17f737e8
+ref table LocalDateTable_08125041-240c-40a8-9616-f97a2e483f96
 
 ref cultureInfo pt-BR
 

@@ -1,0 +1,51 @@
+table Faixetaria
+	lineageTag: 3bfcfe38-626c-4b7b-8f9e-7c3b9f4f8e94
+
+	column Faixetaria
+		dataType: string
+		lineageTag: 84e7a66a-44ef-473b-a73c-c7442a9182df
+		summarizeBy: none
+		sourceColumn: Faixetaria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: int64
+		formatString: #,0
+		lineageTag: a655f7b6-0c51-471e-8f96-056773f365a9
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 104a33e1-aa60-47ce-86fe-37a4e6ed0462
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Faixetaria = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Faixetaria.xlsx"), null, true),
+				    Sheet1_Sheet = Fonte{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"dimension_values", type text}, {"value", Int64.Type}, {"Data", type number}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"dimension_values", "Faixetaria"}, {"value", "Valor"}, {"Data", "Data Req"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data Req", type datetime}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado1",{{"Data Req", type date}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

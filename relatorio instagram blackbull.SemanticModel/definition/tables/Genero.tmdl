@@ -1,0 +1,57 @@
+table Genero
+	lineageTag: 0d1e5379-eeef-40e2-a9e0-2f74107c9333
+
+	column Genero
+		dataType: string
+		lineageTag: e7a56874-89a8-42d3-87cc-77e4f7185474
+		summarizeBy: none
+		sourceColumn: Genero
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3feb6ade-9723-4188-a3c6-70bb63acbb5f
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 19fa6155-a05e-4b35-bd54-364a1bf334d9
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Sexo = IF(Genero[Genero] = "M", "MASCULINO",IF(Genero[Genero] = "F", "FEMININO","OUTROS"))
+		lineageTag: c64e5fad-9a42-4d19-9c25-11431f7d6b58
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Genero = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Genero.xlsx"), null, true),
+				    Sheet1_Sheet = Fonte{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"dimension_values", type text}, {"value", Int64.Type}, {"Data", type number}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"dimension_values", "Genero"}, {"value", "Valor"}, {"Data", "Data Req"}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data Req", type datetime}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado1",{{"Data Req", type date}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

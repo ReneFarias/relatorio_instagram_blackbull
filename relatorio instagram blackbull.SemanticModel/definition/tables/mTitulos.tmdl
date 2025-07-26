@@ -1,0 +1,33 @@
+table mTitulos
+	lineageTag: 3579dacb-34c9-47a7-9760-6d8aa247d0cc
+
+	measure 'Titulo Cidades 2' = "Distribução Seguidores"
+		lineageTag: 398e888e-15a6-4aad-8222-4851fb79f5ef
+
+	measure 'Titulo Publi 2' = "Análise Publicações"
+		lineageTag: c64983cf-b6ee-4858-8e76-6ad1809b4bdd
+
+	measure 'Titulo Seguidores 2' = "Novos Seguidores"
+		lineageTag: f1cc4b46-f755-48dd-8110-37efadd8491b
+
+	measure 'Titulo Stories 2' = "Análise Stories"
+		lineageTag: 28cfa5cf-137d-45e8-b2ba-df7bc04c95fd
+
+	measure 'Titulo Analise Instagram' = "Análise Instagram"
+		lineageTag: 923da786-1df9-434c-916f-dfacf17ca6f4
+
+	column Column
+		formatString: 0
+		lineageTag: 57cf393f-dc4f-48bc-bb82-81b45846d89e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mTitulos = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 33b8903d3ea6496787431264dbed8e7c
+

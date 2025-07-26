@@ -1,0 +1,240 @@
+table mMedidas
+	lineageTag: 8538e6d6-81a3-4521-90a5-4828ee24f879
+
+	measure 'Seguidores %' = DIVIDE([Seguidores],CALCULATE([Seguidores],ALL('SeguidoresCidades'[Cidades])))
+		formatString: 0%;-0%;0%
+		lineageTag: a6a77dcb-330c-47a8-9b48-ea7b8ecb348f
+
+	measure Seguidores = SUM(SeguidoresCidades[Valor])
+		formatString: #,0
+		lineageTag: 4c67e497-61b0-49e4-a735-25baec2c3ad7
+
+	measure VideoStoriesHTML = ```
+			
+			VAR link = SELECTEDVALUE(Stories[URL Midia])
+			VAR tipoMidia = SELECTEDVALUE(Stories[Midia])
+			VAR defaultHTML = "<div style='width:360px;height:640px;display:flex;align-items:center;justify-content:center;background-color:#f0f0f0;color:#888;font-size:20px;font-weight:bold;'>SELECIONE A MÍDIA</div>"
+			
+			RETURN
+			IF (
+			    NOT ISBLANK(link),
+			    IF (
+			        tipoMidia = "VIDEO",
+			        "<video width='360' height='640' autoplay muted controls>
+			            <source src='" & link & "' type='video/mp4'>
+			         </video>",
+			        "<img src='" & link & "' style='max-width:360px;height:640px;'>"
+			    ),
+			    defaultHTML
+			)
+			
+			```
+		lineageTag: d452d21c-e3ed-4293-abbd-74e33287347a
+
+	measure VideoHTML =
+			
+			VAR link = SELECTEDVALUE(APIpublicacoes[media_url])
+			VAR img = SELECTEDVALUE(Publicacoes[Midia])
+			VAR defaultHTML = "<div style='width:360px;height:640px;display:flex;align-items:center;justify-content:center;background-color:#f0f0f0;color:#888;font-size:20px;font-weight:bold;'>SELECIONE A MÍDIA</div>"
+			RETURN
+			IF (
+			    NOT ISBLANK ( link ),
+			    IF( img = "VIDEO",
+			    "<video width=""360"" height=""640"" autoplay muted controls>" &
+			    "<source src=""" & link & """ type=""video/mp4""></video>",
+			    /* HTML para IMAGEM */
+			        "<img src=""" & link & """ style=""max-width:360px;height:540;padding:5em 16px;"">"
+			), defaultHTML)
+		lineageTag: d4ff6727-68b8-477e-98ec-171fc65bf8e7
+
+	measure 'Genero %' = DIVIDE(SUM(Genero[Valor]),CALCULATE(SUM(Genero[Valor]),ALL(Genero[Genero])))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: aef54f7d-abd4-45ac-ac92-65fc0d78584e
+
+	measure 'Idade %' = DIVIDE(SUM(Faixetaria[Valor]),CALCULATE(SUM(Faixetaria[Valor]),ALL(Faixetaria[Faixetaria])))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: debcccb8-b37f-4448-bb57-131dc0e5dd74
+
+	measure 'Publi Video' =
+			
+			VAR qtde = CALCULATE(
+			    DISTINCTCOUNT(Publicacoes[ID]),
+			    Publicacoes[Midia] = "VIDEO"
+			)
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+		formatString: 0
+		lineageTag: 9f4daa14-35c9-4bdf-adac-366ed4dd0106
+
+	measure 'Publi Img' =
+			
+			VAR qtde = CALCULATE(
+			    DISTINCTCOUNT(Publicacoes[ID]),
+			    Publicacoes[Midia] = "IMAGE"
+			)
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+		formatString: 0
+		lineageTag: 65d494e2-fa6b-4f99-b197-76a3e9c96578
+
+	measure 'Publi Tot' = ```
+			
+			VAR qtde = 
+			    DISTINCTCOUNT(Publicacoes[ID])
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+			```
+		formatString: 0
+		lineageTag: 6ebf6dd0-dfad-40c7-b69e-42473335d415
+
+	measure 'Stories Video' =
+			
+			VAR qtde = CALCULATE(
+			    DISTINCTCOUNT(Stories[ID]),
+			    Stories[Midia] = "VIDEO"
+			)
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+		formatString: 0
+		lineageTag: 3df075af-0e6d-4be3-8981-11055a2028a4
+
+	measure 'Stories Img' =
+			
+			VAR qtde = CALCULATE(
+			    DISTINCTCOUNT(Stories[ID]),
+			    Stories[Midia] = "IMAGE"
+			)
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+		formatString: 0
+		lineageTag: 2d265a8a-6d0b-43a8-b110-bf4860049c0b
+
+	measure 'Stories Tot' = ```
+			
+			VAR qtde = 
+			    DISTINCTCOUNT(Stories[ID])
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+			```
+		formatString: 0
+		lineageTag: 93309daf-cbb6-4b8f-b0dd-3a9f84e03f10
+
+	measure 'Texto Publi' = ```
+			
+			VAR txt = SELECTEDVALUE(Publicacoes[Descricao])
+			VAR defaultHTML = "SELECIONE A MÍDIA"
+			RETURN
+			IF(
+			    NOT ISBLANK(txt),
+			    txt,
+			    defaultHTML
+			)
+			
+			```
+		lineageTag: 831d722e-2f44-4dba-8e82-cdb621f98697
+
+	measure 'Tempo Total de Visualizações de Video' =
+			
+			IF (
+			    SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",
+			    BLANK(),
+			    VAR ms = SUM('Metricas'[Tempo Tot Visualizacao Videos (Milissegundos)])
+			    VAR h = QUOTIENT(ms, 3600000)
+			    VAR m = QUOTIENT(MOD(ms, 3600000), 60000)
+			    VAR s = QUOTIENT(MOD(ms, 60000), 1000)
+			    RETURN
+			        FORMAT(h, "0") & ":" &
+			        FORMAT(m, "00") & ":" &
+			        FORMAT(s, "00")
+			)
+		lineageTag: 165b4bea-05d2-4135-9392-98f3ddb0732e
+
+	measure 'Tempo Médio de Visualização de Reels' =
+			
+			IF (
+			    SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",
+			    BLANK(),
+			    VAR ms = SUM('Metricas'[Tempo Medio de Visualizacao de Reels (Milisegundos)])
+			    VAR h = QUOTIENT(ms, 3600000)
+			    VAR m = QUOTIENT(MOD(ms, 3600000), 60000)
+			    VAR s = QUOTIENT(MOD(ms, 60000), 1000)
+			    RETURN
+			        FORMAT(h, "0") & ":" &
+			        FORMAT(m, "00") & ":" &
+			        FORMAT(s, "00")
+			)
+		lineageTag: ef653709-7270-4e91-951a-e952550408e2
+
+	measure 'Atividade do Perfil' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Atividade no Perfil]),"Não se Aplica")
+		formatString: #,0
+		lineageTag: f179f17d-438d-4a44-833e-a7f7b4a62269
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Começaram a Seguir' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Seguidores]),"Não se Aplica")
+		formatString: #,0
+		lineageTag: fdb40e31-f42e-4646-8a70-a17e9720a282
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Visu/Alcance =
+			
+			VAR visuAlcance = SUM(Metricas[Alcance])
+			VAR midia = SELECTEDVALUE(Publicacoes[Midia])
+			VAR nome = IF(midia = "VIDEO", "Visualizações", "Alcance")
+			VAR valorTexto = IF(NOT ISBLANK(visuAlcance), FORMAT(visuAlcance, "#,##0"), "Sem dados")
+			RETURN
+			nome & ":   " & valorTexto
+		lineageTag: 4acbf1d3-82f7-4d24-868b-b58eed950e96
+
+	measure 'Visualizações IMAGE' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Visualizacoes]),"Não se Aplica")
+		formatString: #,0
+		lineageTag: a7d0099b-ab81-43cc-a6ea-9bc0a53e829e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Visitas ao Perfil' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Visitas ao Perfil]),"Não se Aplica")
+		formatString: #,0
+		lineageTag: c8991677-d279-4371-9c0a-198214ecbeb3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 9a30fa7e-1713-400f-a0c5-a2c77e8751dc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mMedidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 0a6e5f02c2eb48f7b600809d52a4f518
+

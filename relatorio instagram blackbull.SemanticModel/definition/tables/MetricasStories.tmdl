@@ -1,0 +1,71 @@
+table MetricasStories
+	lineageTag: b5af239c-ae15-4c09-bbb3-7bce382cb790
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ad226ff4-a175-446b-b291-bdbb13e627c6
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: d1d23e5b-1401-4b4b-bdd1-fc51b20960be
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: 4821dede-99fa-4fe8-abeb-a8afc845d01c
+			defaultHierarchy: LocalDateTable_5cd87224-a636-4fa0-bb04-59c1a3c5dd50.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Alcance
+		dataType: int64
+		formatString: #,0
+		lineageTag: e04f4ee3-90b9-484d-b8bb-896e33675b66
+		summarizeBy: sum
+		sourceColumn: Alcance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Respostas
+		dataType: int64
+		formatString: #,0
+		lineageTag: 94b8a3c4-6395-4b6f-a598-d9ec7721038d
+		summarizeBy: sum
+		sourceColumn: Respostas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Navegacao
+		dataType: int64
+		formatString: #,0
+		lineageTag: c4861b37-8680-49ca-813a-1da2b3a384d3
+		summarizeBy: sum
+		sourceColumn: Navegacao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MetricasStories = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Stories.xlsx"), null, true),
+				    Insights_Sheet = Fonte{[Item="Insights",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Insights_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id", Int64.Type}, {"Data", type datetime}, {"reach", Int64.Type}, {"replies", Int64.Type}, {"navigation", Int64.Type}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"id", "ID"}, {"Data", "Data Req"}, {"reach", "Alcance"}, {"replies", "Respostas"}, {"navigation", "Navegacao"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

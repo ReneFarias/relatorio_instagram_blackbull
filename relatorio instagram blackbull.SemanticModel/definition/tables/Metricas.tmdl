@@ -1,0 +1,134 @@
+table Metricas
+	lineageTag: c3e8e012-79ab-4a79-8eac-2fc3f6fa9590
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 38c6265a-cb44-482d-b83b-7f6badf6bfa6
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Req'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 30a8e32b-44ec-46b0-b5c2-33f23f5d2a63
+		summarizeBy: none
+		sourceColumn: Data Req
+
+		variation Variation
+			isDefault
+			relationship: ebcda245-6af8-40aa-a35a-687541dec177
+			defaultHierarchy: LocalDateTable_025df67a-c200-4f98-bda5-2df04c66c00e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Alcance
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8d6ae710-82a2-4e97-bd14-1cc9f0ac40db
+		summarizeBy: sum
+		sourceColumn: Alcance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salvo
+		dataType: int64
+		formatString: #,0
+		lineageTag: 10bce177-a71d-49d6-a177-cfafb4e5cf19
+		summarizeBy: sum
+		sourceColumn: Salvo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Curtidas
+		dataType: int64
+		formatString: #,0
+		lineageTag: 56c70c98-e2b1-4a96-8cd8-eb419cd5878f
+		summarizeBy: sum
+		sourceColumn: Curtidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comentarios
+		dataType: int64
+		formatString: #,0
+		lineageTag: bc369825-95be-418b-b0fb-3b5283c571dd
+		summarizeBy: sum
+		sourceColumn: Comentarios
+
+		annotation SummarizationSetBy = Automatic
+
+	column Compartilhamentos
+		dataType: int64
+		formatString: #,0
+		lineageTag: 194fb940-01f8-4ad8-b185-fae02678f847
+		summarizeBy: sum
+		sourceColumn: Compartilhamentos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total de Interacoes'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 252bc222-35c7-43b0-b0d1-8cd27f566899
+		summarizeBy: sum
+		sourceColumn: Total de Interacoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seguidores
+		dataType: int64
+		formatString: #,0
+		lineageTag: 779379f5-6188-40dd-8e0a-696384bfad23
+		summarizeBy: sum
+		sourceColumn: Seguidores
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Visitas ao Perfil'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 195f4d30-2a5a-4d3a-aee7-2a932668a644
+		summarizeBy: sum
+		sourceColumn: Visitas ao Perfil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Atividade no Perfil'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9eb01ed0-65f6-492f-b60b-502a762fbdec
+		summarizeBy: sum
+		sourceColumn: Atividade no Perfil
+
+		annotation SummarizationSetBy = Automatic
+
+	column Visualizacoes
+		dataType: int64
+		formatString: #,0
+		lineageTag: 44081d1b-b1ca-4426-825a-63ff69914da3
+		summarizeBy: sum
+		sourceColumn: Visualizacoes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Metricas = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\NOTE RENE\Downloads\SeguidorCidade_Blackbull\Dados\Publicacoes.xlsx"), null, true),
+				    Insights_Sheet = Fonte{[Item="Insights",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Insights_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"id", Int64.Type}, {"Data", type datetime}, {"reach", Int64.Type}, {"saved", Int64.Type}, {"likes", Int64.Type}, {"comments", Int64.Type}, {"shares", Int64.Type}, {"total_interactions", Int64.Type}, {"follows", Int64.Type}, {"profile_visits", Int64.Type}, {"profile_activity", Int64.Type}, {"views", Int64.Type}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"id", "ID"}, {"Data", "Data Req"}, {"reach", "Alcance"}, {"saved", "Salvo"}, {"likes", "Curtidas"}, {"comments", "Comentarios"}, {"shares", "Compartilhamentos"}, {"total_interactions", "Total de Interacoes"}, {"follows", "Seguidores"}, {"profile_visits", "Visitas ao Perfil"}, {"views", "Visualizacoes"}, {"profile_activity", "Atividade no Perfil"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

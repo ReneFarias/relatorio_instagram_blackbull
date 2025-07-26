@@ -1,0 +1,77 @@
+table dCalendario
+	lineageTag: 35194cbf-3ff6-4d01-a36c-543ae97023f3
+
+	column Data
+		formatString: dd/mm/yyyy
+		lineageTag: 46d199df-be74-4d2a-ba50-550fe7aa9400
+		summarizeBy: none
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column CodDiaSemana = WEEKDAY(dCalendario[Data])
+		formatString: 0
+		lineageTag: 1e55258f-6cfd-4ef1-8807-650773a1367a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano = YEAR(dCalendario[Data])
+		formatString: 0
+		lineageTag: 1111f784-575f-496b-aa16-a961e12fba33
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeMes = SWITCH(dCalendario[CodMes], 1, "JAN", 2, "FEV", 3, "MAR", 4, "ABR", 5, "MAI", 6, "JUN", 7, "JUL", 8, "AGO", 9, "SET", 10, "OUT", 11, "NOV", 12, "DEZ")
+		lineageTag: b46aec5e-6497-4f5c-b016-85ef84aa363d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodMes = MONTH(dCalendario[Data])
+		lineageTag: 5bd4b58c-98f1-4cc7-aaa6-f641d3491e89
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes = dCalendario[NomeMes]&"/"&RIGHT(dCalendario[Ano],2)
+		lineageTag: 5cacdacf-4738-426a-a499-767f1e1e3791
+		summarizeBy: none
+		sortByColumn: OrdemAnoMes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia = DAY(dCalendario[Data])
+		formatString: 0
+		lineageTag: e67670db-6e61-4bba-98e9-f4bc29066ebe
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemana = IF(dCalendario[Dia]<10,"0","") & dCalendario[Dia] &" "& dCalendario[NomeSemana]
+		lineageTag: 643cb870-2385-4b8f-9b87-bfa81bdac610
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeSemana = SWITCH(WEEKDAY(dCalendario[Data]), 1, "DOM", 2, "SEG", 3, "TER", 4, "QUA", 5, "QUI", 6, "SEX", 7, "SÁB")
+		lineageTag: 28696b8c-7bd4-4d9d-a520-7ad76d7e038c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdemAnoMes = dCalendario[Ano]&IF(dCalendario[CodMes]<10,"0","")&dCalendario[CodMes]
+		lineageTag: b7afc5a5-7882-41e3-a139-a0cb8de4b2b5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario = calculated
+		mode: import
+		source = CALENDARAUTO()
+
+	annotation PBI_Id = 071f1fd3adbf4dc3a600f01016f0fd5c
+
