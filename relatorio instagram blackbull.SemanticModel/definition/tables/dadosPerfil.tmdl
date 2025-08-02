@@ -115,14 +115,6 @@ table dadosPerfil
 
 		annotation SummarizationSetBy = Automatic
 
-	column stories
-		dataType: string
-		lineageTag: 53a66cd3-46a0-46cb-8d4e-769963cac9a1
-		summarizeBy: none
-		sourceColumn: stories
-
-		annotation SummarizationSetBy = Automatic
-
 	partition dadosPerfil = m
 		mode: import
 		source =

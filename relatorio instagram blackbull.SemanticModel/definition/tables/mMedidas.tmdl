@@ -189,17 +189,31 @@ table mMedidas
 			)
 		lineageTag: ef653709-7270-4e91-951a-e952550408e2
 
-	measure 'Atividade do Perfil' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Atividade no Perfil]),"Não se Aplica")
+	measure 'Atividade do Perfil' =
+			
+			VAR MidiaSelecionada = SELECTEDVALUE(Publicacoes[Midia])
+			RETURN
+			IF(
+			    MidiaSelecionada IN {"IMAGE", "CAROUSEL_ALBUM"} || ISBLANK(MidiaSelecionada),
+			    SUM(Metricas[Atividade no Perfil]),
+			    "Não se Aplica"
+			)
 		formatString: #,0
 		lineageTag: f179f17d-438d-4a44-833e-a7f7b4a62269
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
-	measure 'Começaram a Seguir' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Seguidores]),"Não se Aplica")
-		formatString: #,0
+	measure 'Começaram a Seguir' =
+			
+			VAR MidiaSelecionada = SELECTEDVALUE(Publicacoes[Midia])
+			RETURN
+			IF (
+			    MidiaSelecionada IN {"IMAGE","CAROUSEL_ALBUM"} || ISBLANK(MidiaSelecionada),
+			    SUM(Metricas[Seguidores]),
+			    "Não se Aplica"
+			)
+		formatString: 0
 		lineageTag: fdb40e31-f42e-4646-8a70-a17e9720a282
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure Visu/Alcance =
 			
@@ -211,17 +225,69 @@ table mMedidas
 			nome & ":   " & valorTexto
 		lineageTag: 4acbf1d3-82f7-4d24-868b-b58eed950e96
 
-	measure 'Visualizações IMAGE' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Visualizacoes]),"Não se Aplica")
+	measure 'Visualizações IMAGE' =
+			
+			VAR MidiaSelecionada = SELECTEDVALUE(Publicacoes[Midia])
+			RETURN
+			IF (
+			    MidiaSelecionada IN {"IMAGE", "CAROUSEL_ALBUM"} || ISBLANK(MidiaSelecionada),
+			    SUM(Metricas[Visualizacoes]))
 		formatString: #,0
 		lineageTag: a7d0099b-ab81-43cc-a6ea-9bc0a53e829e
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
-	measure 'Visitas ao Perfil' = IF(SELECTEDVALUE(Publicacoes[Midia]) = "IMAGE",SUM(Metricas[Visitas ao Perfil]),"Não se Aplica")
-		formatString: #,0
+	measure 'Visitas ao Perfil' = ```
+			
+			VAR MidiaSelecionada = SELECTEDVALUE(Publicacoes[Midia])
+			RETURN
+			IF (
+			    MidiaSelecionada IN {"IMAGE", "CAROUSEL_ALBUM"} || ISBLANK(MidiaSelecionada),
+			    SUM(Metricas[Visitas ao Perfil]),
+			    "Não se Aplica"
+			)
+			
+			```
+		formatString: 0
 		lineageTag: c8991677-d279-4371-9c0a-198214ecbeb3
 
 		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Curtidas = SUM(Metricas[Curtidas])
+		formatString: 0
+		lineageTag: 77a11dc3-d5ec-41bb-a80c-e903364204fd
+
+	measure Comentários = SUM(Metricas[Comentarios])
+		formatString: 0
+		lineageTag: 3018c238-890b-4e14-9812-66673ff3d76a
+
+	measure Compartilhamentos = SUM(Metricas[Compartilhamentos])
+		formatString: 0
+		lineageTag: 503a226b-febc-4ab6-96d0-253518f85666
+
+	measure Salvo = SUM(Metricas[Salvo])
+		formatString: 0
+		lineageTag: c5d78873-fe3f-49a8-9637-9a3457106b4a
+
+	measure Interações = SUM(Metricas[Total de Interacoes])
+		formatString: 0
+		lineageTag: 8ebb1825-4517-4036-97f6-53630349e9da
+
+	measure 'Publi Carrossel' =
+			
+			VAR qtde = CALCULATE(
+			    DISTINCTCOUNT(Publicacoes[ID]),
+			    Publicacoes[Midia] = "CAROUSEL_ALBUM"
+			)
+			RETURN
+			IF(
+			    ISBLANK(qtde),
+			    "VAZIO",
+			    qtde
+			)
+		lineageTag: cbfdeb5a-5a43-404a-92e6-7797e4a7d111
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Column
 		formatString: 0

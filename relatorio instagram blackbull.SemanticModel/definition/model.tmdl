@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["dadosPerfil","APIpublicacoes","Alcance","DadosBasicosInsta","DiaSeguidores","Faixetaria","Genero","LinkPerfil","Metricas","Publicacoes","SeguidoresCidades","MetricasStories","Stories","VisitasPerfil"]
+annotation PBI_QueryOrder = ["dadosPerfil","APIpublicacoes","Alcance","DadosBasicosInsta","DiaSeguidores","Faixetaria","Genero","LinkPerfil","Metricas","Publicacoes","SeguidoresCidades","MetricasStories","Stories","VisitasPerfil","APIstories"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -45,6 +45,7 @@ ref table LocalDateTable_04efef65-fac6-4596-95d2-a2b0479760f6
 ref table LocalDateTable_9680a0b3-9ec3-418d-934a-82c44e1ece20
 ref table LocalDateTable_320b6c21-a3d6-4888-85c6-289f17f737e8
 ref table LocalDateTable_08125041-240c-40a8-9616-f97a2e483f96
+ref table APIstories
 
 ref cultureInfo pt-BR
 

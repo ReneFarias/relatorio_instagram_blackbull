@@ -5989,7 +5989,7 @@ cultureInfo pt-BR
 			        }
 			      ]
 			    },
-			    "metrica.curtida": {
+			    "metrica.curtidas": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Metricas",
@@ -5999,18 +5999,15 @@ cultureInfo pt-BR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "curtida": {
+			          "curtidas": {
 			            "State": "Generated"
 			          }
 			        },
 			        {
-			          "Curtidas": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
+			          "curtida": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
 			          }
 			        }
 			      ]
@@ -6031,7 +6028,7 @@ cultureInfo pt-BR
 			        }
 			      ]
 			    },
-			    "metrica.compartilhamento": {
+			    "metrica.compartilhamentos": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Metricas",
@@ -6041,8 +6038,15 @@ cultureInfo pt-BR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "compartilhamento": {
+			          "compartilhamentos": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "compartilhamento": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
 			          }
 			        }
 			      ]
@@ -6421,6 +6425,16 @@ cultureInfo pt-BR
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "Data": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ],
@@ -8051,6 +8065,16 @@ cultureInfo pt-BR
 			              "Agent": "Thesaurus"
 			            },
 			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "Data": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ],
@@ -11541,42 +11565,485 @@ cultureInfo pt-BR
 			          }
 			        }
 			      ]
-			    }
-			  },
-			  "Relationships": {
-			    "visitas_perfil_data_req_hierarquia_de_data_has_visitas_perfil_data_req_ano": {
-			      "Binding": {
-			        "ConceptualEntity": "VisitasPerfil"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "visitas_perfil.data_req.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "visitas_perfil.data_req.hierarquia_de_data"
-			          }
-			        },
-			        "visitas_perfil.data_req.ano": {
-			          "Target": {
-			            "Entity": "visitas_perfil.data_req.ano"
-			          }
+			    },
+			    "m_medida.atividade_do_perfil": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Atividade do Perfil"
 			        }
 			      },
-			      "Phrasings": [
+			      "State": "Generated",
+			      "Terms": [
 			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "visitas_perfil.data_req.hierarquia_de_data"
-			            },
-			            "Object": {
-			              "Role": "visitas_perfil.data_req.ano"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos"
+			          "atividade do perfil": {
+			            "State": "Generated"
+			          }
 			        }
 			      ]
 			    },
+			    "m_medida.começaram_a_seguir": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Começaram a Seguir"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "começaram a seguir": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.visu_alcance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Visu/Alcance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "visu/alcance": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "visu": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "visu alcance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.visualizações_IMAGE": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Visualizações IMAGE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "visualizações IMAGE": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "visualizaçõe doppelgänger": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "visualizaçõe copy": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "visualizaçõe twin": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "visualizaçõe double": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "visualizaçõe duplicate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "visualizaçõe appearance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "visualizaçõe persona": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "visualizaçõe aura": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "visualizaçõe aspect": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "visualizaçõe semblance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.visitas_ao_perfil": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Visitas ao Perfil"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "visitas ao perfil": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.curtidas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Curtidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "curtidas": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.comentários": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Comentários"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "comentários": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.compartilhamentos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Compartilhamentos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "compartilhamentos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.salvo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Salvo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "salvo": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "bombardment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "torrent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "barrage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "round": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "hail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "deluge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "volley": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.interações": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Interações"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "interações": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "m_medida.publi_carrossel": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "mMedidas",
+			          "ConceptualProperty": "Publi Carrossel"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "publi carrossel": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CARROSSEL": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "AP_istory": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "APIstories"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "AP istory": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "APIstories": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "AP_istory.data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "APIstories",
+			          "ConceptualProperty": "data"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
 			    "visitas_perfil_data_req_has_hierarquia_de_data": {
 			      "Binding": {
 			        "ConceptualEntity": "VisitasPerfil"
@@ -11936,7 +12403,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos1"
+			          "ID": "hierarquia_de_data_have_anos"
 			        }
 			      ]
 			    },
@@ -12299,7 +12766,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos2"
+			          "ID": "hierarquia_de_data_have_anos1"
 			        }
 			      ]
 			    },
@@ -12662,7 +13129,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos3"
+			          "ID": "hierarquia_de_data_have_anos2"
 			        }
 			      ]
 			    },
@@ -13025,7 +13492,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos4"
+			          "ID": "hierarquia_de_data_have_anos3"
 			        }
 			      ]
 			    },
@@ -13388,7 +13855,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos5"
+			          "ID": "hierarquia_de_data_have_anos4"
 			        }
 			      ]
 			    },
@@ -13751,7 +14218,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos6"
+			          "ID": "hierarquia_de_data_have_anos5"
 			        }
 			      ]
 			    },
@@ -14114,7 +14581,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos7"
+			          "ID": "hierarquia_de_data_have_anos6"
 			        }
 			      ]
 			    },
@@ -14477,7 +14944,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos8"
+			          "ID": "hierarquia_de_data_have_anos7"
 			        }
 			      ]
 			    },
@@ -14840,7 +15307,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos9"
+			          "ID": "hierarquia_de_data_have_anos8"
 			        }
 			      ]
 			    },
@@ -15203,7 +15670,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos10"
+			          "ID": "hierarquia_de_data_have_anos9"
 			        }
 			      ]
 			    },
@@ -15566,7 +16033,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos11"
+			          "ID": "hierarquia_de_data_have_anos10"
 			        }
 			      ]
 			    },
@@ -16160,6 +16627,402 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "d_calendarios_have_dados_basicos_instas"
+			        }
+			      ]
+			    },
+			    "AP_istory_has_data": {
+			      "Binding": {
+			        "ConceptualEntity": "APIstories"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "AP_istory": {
+			          "Target": {
+			            "Entity": "AP_istory"
+			          }
+			        },
+			        "AP_istory.data": {
+			          "Target": {
+			            "Entity": "AP_istory.data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "AP_istory"
+			            },
+			            "Object": {
+			              "Role": "AP_istory.data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "AP_istories_have_data"
+			        }
+			      ]
+			    },
+			    "publicacoe_has_m_medida_publi_carrossel": {
+			      "Binding": {
+			        "ConceptualEntity": "Publicacoes"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "publicacoe": {
+			          "Target": {
+			            "Entity": "publicacoe"
+			          }
+			        },
+			        "m_medida.publi_carrossel": {
+			          "Target": {
+			            "Entity": "m_medida.publi_carrossel"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "publicacoe"
+			            },
+			            "Object": {
+			              "Role": "m_medida.publi_carrossel"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "publicacoes_have_publi_carrossel"
+			        }
+			      ]
+			    },
+			    "metrica_has_m_medida_interações": {
+			      "Binding": {
+			        "ConceptualEntity": "Metricas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "metrica": {
+			          "Target": {
+			            "Entity": "metrica"
+			          }
+			        },
+			        "m_medida.interações": {
+			          "Target": {
+			            "Entity": "m_medida.interações"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "metrica"
+			            },
+			            "Object": {
+			              "Role": "m_medida.interações"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "metricas_have_interações"
+			        }
+			      ]
+			    },
+			    "metrica_has_m_medida_salvo": {
+			      "Binding": {
+			        "ConceptualEntity": "Metricas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "metrica": {
+			          "Target": {
+			            "Entity": "metrica"
+			          }
+			        },
+			        "m_medida.salvo": {
+			          "Target": {
+			            "Entity": "m_medida.salvo"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "metrica"
+			            },
+			            "Object": {
+			              "Role": "m_medida.salvo"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "metricas_have_salvo"
+			        }
+			      ]
+			    },
+			    "metrica_has_m_medida_compartilhamentos": {
+			      "Binding": {
+			        "ConceptualEntity": "Metricas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "metrica": {
+			          "Target": {
+			            "Entity": "metrica"
+			          }
+			        },
+			        "m_medida.compartilhamentos": {
+			          "Target": {
+			            "Entity": "m_medida.compartilhamentos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "metrica"
+			            },
+			            "Object": {
+			              "Role": "m_medida.compartilhamentos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "metricas_have_compartilhamentos"
+			        }
+			      ]
+			    },
+			    "metrica_has_m_medida_comentários": {
+			      "Binding": {
+			        "ConceptualEntity": "Metricas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "metrica": {
+			          "Target": {
+			            "Entity": "metrica"
+			          }
+			        },
+			        "m_medida.comentários": {
+			          "Target": {
+			            "Entity": "m_medida.comentários"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "metrica"
+			            },
+			            "Object": {
+			              "Role": "m_medida.comentários"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "metricas_have_comentários"
+			        }
+			      ]
+			    },
+			    "metrica_has_m_medida_curtidas": {
+			      "Binding": {
+			        "ConceptualEntity": "Metricas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "metrica": {
+			          "Target": {
+			            "Entity": "metrica"
+			          }
+			        },
+			        "m_medida.curtidas": {
+			          "Target": {
+			            "Entity": "m_medida.curtidas"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "metrica"
+			            },
+			            "Object": {
+			              "Role": "m_medida.curtidas"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "metricas_have_curtidas"
+			        }
+			      ]
+			    },
+			    "m_medida_has_visitas_ao_perfil": {
+			      "Binding": {
+			        "ConceptualEntity": "mMedidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "m_medida": {
+			          "Target": {
+			            "Entity": "m_medida"
+			          }
+			        },
+			        "m_medida.visitas_ao_perfil": {
+			          "Target": {
+			            "Entity": "m_medida.visitas_ao_perfil"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "m_medida"
+			            },
+			            "Object": {
+			              "Role": "m_medida.visitas_ao_perfil"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "m_medidas_have_visitas_ao_perfil"
+			        }
+			      ]
+			    },
+			    "m_medida_has_visualizações_IMAGE": {
+			      "Binding": {
+			        "ConceptualEntity": "mMedidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "m_medida": {
+			          "Target": {
+			            "Entity": "m_medida"
+			          }
+			        },
+			        "m_medida.visualizações_IMAGE": {
+			          "Target": {
+			            "Entity": "m_medida.visualizações_IMAGE"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "m_medida"
+			            },
+			            "Object": {
+			              "Role": "m_medida.visualizações_IMAGE"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "m_medidas_have_visualizações_IMAGE"
+			        }
+			      ]
+			    },
+			    "m_medida_has_visu_alcance": {
+			      "Binding": {
+			        "ConceptualEntity": "mMedidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "m_medida": {
+			          "Target": {
+			            "Entity": "m_medida"
+			          }
+			        },
+			        "m_medida.visu_alcance": {
+			          "Target": {
+			            "Entity": "m_medida.visu_alcance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "m_medida"
+			            },
+			            "Object": {
+			              "Role": "m_medida.visu_alcance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "m_medidas_have_visu_alcance"
+			        }
+			      ]
+			    },
+			    "m_medida_has_começaram_a_seguir": {
+			      "Binding": {
+			        "ConceptualEntity": "mMedidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "m_medida": {
+			          "Target": {
+			            "Entity": "m_medida"
+			          }
+			        },
+			        "m_medida.começaram_a_seguir": {
+			          "Target": {
+			            "Entity": "m_medida.começaram_a_seguir"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "m_medida"
+			            },
+			            "Object": {
+			              "Role": "m_medida.começaram_a_seguir"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "m_medidas_have_começaram_a_seguir"
+			        }
+			      ]
+			    },
+			    "m_medida_has_atividade_do_perfil": {
+			      "Binding": {
+			        "ConceptualEntity": "mMedidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "m_medida": {
+			          "Target": {
+			            "Entity": "m_medida"
+			          }
+			        },
+			        "m_medida.atividade_do_perfil": {
+			          "Target": {
+			            "Entity": "m_medida.atividade_do_perfil"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "m_medida"
+			            },
+			            "Object": {
+			              "Role": "m_medida.atividade_do_perfil"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "m_medidas_have_atividade_do_perfil"
 			        }
 			      ]
 			    },
@@ -17179,7 +18042,7 @@ cultureInfo pt-BR
 			        }
 			      ]
 			    },
-			    "metrica_has_compartilhamento": {
+			    "metrica_has_compartilhamentos": {
 			      "Binding": {
 			        "ConceptualEntity": "Metricas"
 			      },
@@ -17190,9 +18053,9 @@ cultureInfo pt-BR
 			            "Entity": "metrica"
 			          }
 			        },
-			        "metrica.compartilhamento": {
+			        "metrica.compartilhamentos": {
 			          "Target": {
-			            "Entity": "metrica.compartilhamento"
+			            "Entity": "metrica.compartilhamentos"
 			          }
 			        }
 			      },
@@ -17203,12 +18066,12 @@ cultureInfo pt-BR
 			              "Role": "metrica"
 			            },
 			            "Object": {
-			              "Role": "metrica.compartilhamento"
+			              "Role": "metrica.compartilhamentos"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "metricas_have_compartilhamentos"
+			          "ID": "metricas_have_compartilhamentos1"
 			        }
 			      ]
 			    },
@@ -17245,7 +18108,7 @@ cultureInfo pt-BR
 			        }
 			      ]
 			    },
-			    "metrica_has_curtida": {
+			    "metrica_has_curtidas": {
 			      "Binding": {
 			        "ConceptualEntity": "Metricas"
 			      },
@@ -17256,9 +18119,9 @@ cultureInfo pt-BR
 			            "Entity": "metrica"
 			          }
 			        },
-			        "metrica.curtida": {
+			        "metrica.curtidas": {
 			          "Target": {
-			            "Entity": "metrica.curtida"
+			            "Entity": "metrica.curtidas"
 			          }
 			        }
 			      },
@@ -17269,12 +18132,12 @@ cultureInfo pt-BR
 			              "Role": "metrica"
 			            },
 			            "Object": {
-			              "Role": "metrica.curtida"
+			              "Role": "metrica.curtidas"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "metricas_have_curtidas"
+			          "ID": "metricas_have_curtidas1"
 			        }
 			      ]
 			    },
@@ -19687,6 +20550,39 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "some_dados_perfils_are_published_dados_perfils"
+			        }
+			      ]
+			    },
+			    "visitas_perfil_data_req_hierarquia_de_data_has_visitas_perfil_data_req_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "VisitasPerfil"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "visitas_perfil.data_req.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "visitas_perfil.data_req.hierarquia_de_data"
+			          }
+			        },
+			        "visitas_perfil.data_req.ano": {
+			          "Target": {
+			            "Entity": "visitas_perfil.data_req.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "visitas_perfil.data_req.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "visitas_perfil.data_req.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos11"
 			        }
 			      ]
 			    },

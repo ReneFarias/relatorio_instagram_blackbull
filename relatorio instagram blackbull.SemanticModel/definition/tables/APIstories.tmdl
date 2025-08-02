@@ -1,0 +1,26 @@
+table APIstories
+	lineageTag: c70ed1c1-03bb-484b-99b9-84955d449fda
+
+	column data
+		dataType: string
+		lineageTag: 5b7662d1-9773-429f-b6aa-2def295ebfd5
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+	partition APIstories = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://graph.facebook.com/v23.0/17841468029321032/stories?fields=id,media_type,media_url,thumbnail_url,timestamp,permalink,insights.metric(impressions,reach,replies,navigation)&access_token=EAAKh1Nok4vQBO4z8RvOr8ZBbNsZAWUagQ9ZASxjxG7XHceZCs7z1bdyGnphFM1oA9zsM1ZAV113xIkMtoxvi46LVZATAcCes4ZBkDYZCsoVWFzzaRoIgiifuiKG6RFPZCgxF2Mh4ll9PHOZBihdDdWKAsf59pGjenlVCLy4to2YKvZCrZAlfhDNyBqZBTsBlkxoV5")),
+				    #"Convertido para Tabela" = Table.FromRecords({Fonte}),
+				    #"data Expandido" = Table.ExpandListColumn(#"Convertido para Tabela", "data"),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"data Expandido",{{"data", type any}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
